@@ -24,3 +24,11 @@ CREATE TABLE invoices (
 );
 
 CREATE INDEX invoices_medical_history_id_index ON invoices(medical_history_id);
+
+CREATE TABLE treatments (
+	id SERIAL PRIMARY KEY,
+	type VARCHAR(50),
+	name VARCHAR(50)
+);
+
+
