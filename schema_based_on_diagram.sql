@@ -41,3 +41,17 @@ CREATE TABLE medicalHistory_treatment_link (
 
 CREATE INDEX link_medical_history_id_index ON medicalHistory_treatment_link(medical_history_id);
 CREATE INDEX link_treatment_id_index ON medicalHistory_treatment_link(treatment_id);
+
+CREATE TABLE invoice_items (
+	id SERIAL PRIMARY KEY,
+	unit_price DECIMAL,
+	quantity INT,
+	total_price DECIMAL,
+	invoice_id INT,
+	treatment_id INT,
+	CONSTRAINT fk_invoice_id FOREIGN KEY(invoice_id) REFERENCES invoices(id),
+	CONSTRAINT fk_treatment_id FOREIGN KEY(treatment_id) REFERENCES treatments(id)
+);
+
+CREATE INDEX in_items_invoice_id_index ON invoice_items(invoice_id);
+CREATE INDEX in_items_treatment_id_index ON invoice_items(treatment_id);
