@@ -31,4 +31,13 @@ CREATE TABLE treatments (
 	name VARCHAR(50)
 );
 
+CREATE TABLE medicalHistory_treatment_link (
+	id SERIAL PRIMARY KEY,
+	medical_history_id INT,
+	treatment_id INT,
+	CONSTRAINT fk_medical_history_id FOREIGN KEY(medical_history_id) REFERENCES medical_history(id),
+	CONSTRAINT fk_treatment_id FOREIGN KEY(treatment_id) REFERENCES treatments(id)
+);
 
+CREATE INDEX link_medical_history_id_index ON medicalHistory_treatment_link(medical_history_id);
+CREATE INDEX link_treatment_id_index ON medicalHistory_treatment_link(treatment_id);
